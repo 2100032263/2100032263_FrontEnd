@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extraction of Words</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font to body */
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #FBF9F1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Glassy container styles */
+    background-color: rgba(229, 225, 218, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(229, 225, 218, 0.2);
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: black;
+  }
+
+  textarea {
+    width: 97%;
+    height: 150px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background-color:#7ec5d0 ;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #AAD7D9;
+    
+  }
+
+  .highlighted {
+    background-color: #FFFF00;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2 style="text-align: center;">Extraction of Words</h2><br><br>
+  <label for="paragraph">Paste your paragraph here:</label>
+  <textarea id="paragraph" placeholder="Paste your paragraph here..."></textarea>
+  <button onclick="extractWords()">Extract Words</button><br><br><br>
+  <p><strong>Example:</strong></p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <hr>
+  <p id="output"></p>
+</div>
+
+<script>
+  function extractWords() {
+    var paragraph = document.getElementById('paragraph').value;
+    var words = paragraph.split(/\s+/);
+    var output = '';
+    words.forEach(function(word, index) {
+      if (word.length > 8) {
+        output += '<span class="highlighted">' + word + '</span>';
+      } else {
+        output += word;
+      }
+      if (index < words.length - 1) {
+        output += ' '; // Add space between words
+      }
+    });
+    document.getElementById('output').innerHTML = output;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Form, Interactive Data Table & Word Extraction</title>
+<style>
+  /* General styles */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+  body {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font to body */
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Dynamic Form styles */
+  .form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="checkbox"],
+  .form-group input[type="radio"] {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .form-group button {
+    padding: 11px 15px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .form-group button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+<!-- Dynamic Form -->
+<div class="form-container">
+  <h2 style="text-align: center;">Dynamic Form</h2>
+  <br>
+  <form id="dynamic-form">
+    <div class="form-group" id="form-fields">
+    </div>
+    <button type="button" onclick="addField('text')">Add Text Input</button>
+    <button type="button" onclick="addField('checkbox')">Add Checkbox</button>
+    <button type="button" onclick="addField('radio')">Add Radio Button</button>
+    <button type="button" onclick="removeField()">Remove Field</button>
+  </form>
+</div>
+
+<script>
+  var fieldCounter = 0; // Counter for unique field names
+
+  function addField(type) {
+    var formFields = document.getElementById('form-fields');
+    var field = document.createElement('div');
+    field.className = 'form-group';
+    var label = document.createElement('label');
+    var input = document.createElement('input');
+    input.setAttribute('type', type);
+    input.setAttribute('name', 'field' + (++fieldCounter));
+    label.textContent = 'Field ' + fieldCounter + ':';
+    field.appendChild(label);
+    field.appendChild(input);
+    formFields.appendChild(field);
+  }
+
+  function removeField() {
+    var formFields = document.getElementById('form-fields');
+    var fields = formFields.querySelectorAll('.form-group');
+    if (fields.length >= 0) {
+      formFields.removeChild(fields[fields.length - 1]);
+      fieldCounter--;
+    }
+  }
+</script>
+</body>
+</html>
